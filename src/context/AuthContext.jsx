@@ -14,6 +14,31 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+    // Check if user is premium
+  const isPremium = user?.role === 'premium';
+  const isFreeTier = user?.role === 'free' || !user?.role;
+
+  const upgradeToPremium = async () => {
+    try {
+      const res = await api.post('/auth/upgrade-to-premium');
+      setUser(res.data.user);
+      return res.data;
+    } catch (error) {
+      console.error("Upgrade failed:", error);
+      throw error;
+    }
+  };
+
+    const checkPremiumAccess = async () => {
+    try {
+      const res = await api.get('/premium/check-access');
+      return res.data;
+    } catch (error) {
+      console.error("Access check failed:", error);
+      return { hasPremiumAccess: false };
+    }
+  };
+
   // FUNCTION TO CHECK FOR AN EXISTING SESSION
   // This function is called on initial app load to see if the user is already logged in (e.g., via an existing cookie on the server).
   const checkUserSession = useCallback(async () => {
@@ -81,12 +106,16 @@ export function AuthProvider({ children }) {
   // CONTEXT VALUE
   // This object contains the state and functions that we want to make available
   // to all consuming components.
-  const value = {
+    const value = {
     user,
     isLoading,
+    isPremium,
+    isFreeTier,
     login,
     logout,
     register,
+    upgradeToPremium,
+    checkPremiumAccess,
   };
 
 

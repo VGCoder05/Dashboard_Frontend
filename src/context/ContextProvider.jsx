@@ -4,7 +4,7 @@ import { SearchProvider } from "./SearchContext";
 import { AuthProvider } from "./AuthContext";
 
 const ContextProvider = ({ children }) => {
-  console.log("Context PRovider is insalized")
+  // console.log("Context PRovider is insalized")
   return (
 
     <AuthProvider>
