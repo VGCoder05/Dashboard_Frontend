@@ -6,6 +6,7 @@ import Register from "../pages/RegisterPage";
 import PremiumRoute from "../components/routes/PremiumRoute/PremiumRoute";
 import PremiumPage from "../pages/PremiumPage";
 import UpgradePrompt from '../components/common/UpgradePrompt/UpgradePromptLogic';
+import PremiumFeatureCard from '../components/common/PremiumPg/PremiumFeatureCard';
 
 
 const MainRoutes = () => {
@@ -40,7 +41,9 @@ const MainRoutes = () => {
       <Route 
         path="/premium-features" 
         element={
+          <>
             <UpgradePrompt />
+          </>
         } 
       />
 

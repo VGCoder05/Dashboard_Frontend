@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../util/api';
+import PremiumBadge from '../components/common/PremiumPg/PremiumBadge';
 
 const PremiumPage = () => {
   const { user, isPremium } = useAuth();
@@ -44,9 +45,7 @@ const PremiumPage = () => {
                 Welcome back, {user?.email?.split('@')[0]}
               </p>
             </div>
-            <div className="bg-gradient-to-r from-primary to-subtle text-white px-6 py-3 rounded-full font-display font-semibold shadow-custom-light">
-              ✨ PREMIUM MEMBER
-            </div>
+            <PremiumBadge/>
           </div>
 
           {/* Stats Grid */}
