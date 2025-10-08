@@ -47,6 +47,7 @@ export function AuthProvider({ children }) {
       const res = await api.get('auth/me');
       // If the request is successful and returns user data, update the state.
       if (res.data) {
+        console.log('Active session found.');
         setUser(res.data.user); 
       }
     } catch (error) {
